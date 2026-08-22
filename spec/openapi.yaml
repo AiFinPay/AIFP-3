@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: AiFinPay AIFP-3 Agent Passport API
+  version: 0.1.0
+  description: Draft interface for passport issuance, verification, wallet binding and lifecycle management.
+  license:
+    name: Apache-2.0
+    identifier: Apache-2.0
+servers:
+  - url: https://aifinpay.io
+paths:
+  /v1/passports:
+    post:
+      summary: Issue a passport under an authorized issuer workflow
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [holder_public_key]
+              properties:
+                holder_public_key: { type: string, minLength: 32 }
+                display_name: { type: string, maxLength: 120 }
+      responses:
+        '201':
+          description: Issued passport
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Passport' }
+  /v1/passports/{agent_id}:
+    get:
+      summary: Resolve minimum current passport state
+      parameters:
+        - in: path
+          name: agent_id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Current public state
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Passport' }
+  /v1/passports/{agent_id}/wallet-bindings/challenge:
+    post:
+      summary: Create a wallet ownership challenge
+      parameters:
+        - in: path
+          name: agent_id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [network, address]
+              properties:
+                network: { type: string }
+                address: { type: string }
+      responses:
+        '201':
+          description: Short-lived challenge
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [challenge_id, challenge, expires_at]
+                properties:
+                  challenge_id: { type: string, format: uuid }
+                  challenge: { type: string }
+                  expires_at: { type: string, format: date-time }
+  /v1/passports/{agent_id}/wallet-bindings:
+    post:
+      summary: Verify and add a wallet binding
+      parameters:
+        - in: path
+          name: agent_id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [challenge_id, proof, holder_authorization]
+              properties:
+                challenge_id: { type: string, format: uuid }
+                proof: { type: string }
+                holder_authorization: { type: string }
+      responses:
+        '201':
+          description: Active binding
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/WalletBinding' }
+components:
+  schemas:
+    Passport:
+      type: object
+      required: [protocol, version, agent_id, passport_number, issuer, issuer_key_id, holder_public_key, key_epoch, status, issued_at, updated_at, protected_claims_digest, issuer_signature]
+      properties:
+        protocol: { type: string, const: AIFP-3 }
+        version: { type: string, const: '0.1' }
+        agent_id: { type: string, format: uuid }
+        passport_number: { type: string, pattern: '^AIFP-[0-9]{9}$' }
+        issuer: { type: string }
+        issuer_key_id: { type: string }
+        holder_public_key: { type: string }
+        key_epoch: { type: integer, minimum: 1 }
+        status: { type: string, enum: [PENDING_VERIFICATION, ACTIVE, RECOVERY, SUSPENDED_SECURITY, REVOKED] }
+        issued_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+        protected_claims_digest: { type: string }
+        issuer_signature: { type: string }
+    WalletBinding:
+      type: object
+      required: [binding_id, agent_id, network, address, proof_type, verified_at, status]
+      properties:
+        binding_id: { type: string, format: uuid }
+        agent_id: { type: string, format: uuid }
+        network: { type: string }
+        address: { type: string }
+        proof_type: { type: string }
+        verified_at: { type: string, format: date-time }
+        status: { type: string, enum: [ACTIVE, SUSPENDED, REVOKED] }
+

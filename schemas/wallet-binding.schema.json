@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifinpay.io/schemas/aifp-3/wallet-binding.schema.json",
+  "title": "AIFP-3 Wallet Binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["binding_id", "agent_id", "network", "address", "wallet_class", "proof_type", "proof_digest", "verified_at", "status"],
+  "properties": {
+    "binding_id": { "type": "string", "format": "uuid" },
+    "agent_id": { "type": "string", "format": "uuid" },
+    "network": { "type": "string", "minLength": 3 },
+    "address": { "type": "string", "minLength": 8 },
+    "wallet_class": { "enum": ["EXTERNAL", "SMART_WALLET", "ORGANIZATIONAL"] },
+    "proof_type": { "type": "string", "minLength": 1 },
+    "proof_digest": { "type": "string", "minLength": 32 },
+    "verified_at": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["ACTIVE", "SUSPENDED", "REVOKED"] }
+  }
+}
+

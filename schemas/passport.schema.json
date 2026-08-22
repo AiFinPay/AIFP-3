@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aifinpay.io/schemas/aifp-3/passport.schema.json",
+  "title": "AIFP-3 Agent Passport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol", "version", "agent_id", "passport_number", "issuer", "issuer_key_id", "holder_public_key", "key_epoch", "status", "issued_at", "updated_at", "protected_claims_digest", "issuer_signature"],
+  "properties": {
+    "protocol": { "const": "AIFP-3" },
+    "version": { "const": "0.1" },
+    "agent_id": { "type": "string", "format": "uuid" },
+    "passport_number": { "type": "string", "pattern": "^AIFP-[0-9]{9}$" },
+    "issuer": { "type": "string", "minLength": 1 },
+    "issuer_key_id": { "type": "string", "minLength": 1 },
+    "holder_public_key": { "type": "string", "minLength": 32 },
+    "key_epoch": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["PENDING_VERIFICATION", "ACTIVE", "RECOVERY", "SUSPENDED_SECURITY", "REVOKED"] },
+    "display_name": { "type": "string", "maxLength": 120 },
+    "public_aliases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "value", "protection"],
+        "properties": {
+          "type": { "type": "string" },
+          "value": { "type": "string" },
+          "protection": { "enum": ["HOLDER_EDITABLE", "ISSUER_PROTECTED"] }
+        }
+      }
+    },
+    "issued_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "protected_claims_digest": { "type": "string", "minLength": 32 },
+    "issuer_signature": { "type": "string", "minLength": 64 }
+  }
+}
+
