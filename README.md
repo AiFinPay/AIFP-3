@@ -103,7 +103,9 @@ Passport verification should disclose only what a relying party needs. A verifie
 
 ## Implementation status
 
-The Global Agent Passport vNext implementation is currently split between [backend PR #33](https://github.com/AiFinPay/aifinpay-web/pull/33) and [SDK PR #27](https://github.com/AiFinPay/sdk/pull/27). Both report passing CI, but both remain **open draft pull requests and are not merged**. They contain the global identity, permanent number, issuer/holder key model, wallet ownership proof, rotation, revoke and administrative lifecycle surfaces.
+The newest dual-key Global Agent Passport implementation is split between [backend PR #33](https://github.com/AiFinPay/aifinpay-web/pull/33) and [SDK PR #27](https://github.com/AiFinPay/sdk/pull/27). Both report passing CI, but both remain **open draft pull requests and are not merged**. They contain the global identity, permanent number, issuer/holder key model, wallet ownership proof, rotation, revoke and administrative lifecycle surfaces.
+
+An earlier combined production-RC stack also exists: backend [PR #22](https://github.com/AiFinPay/aifinpay-web/pull/22), merged SDK [PR #26](https://github.com/AiFinPay/sdk/pull/26) and dashboard [PR #9](https://github.com/AiFinPay/paywall-dashboard/pull/9). It shares the global-identity direction but is not the same final data/security model. PR #22 remains stacked on another backend branch and the dashboard still depends on it. These surfaces must be reconciled with PR #33/#27 before one release can be claimed.
 
 The existing [`AgentPassport.sol`](https://github.com/AiFinPay/evm-contract/blob/main/contracts/AgentPassport.sol) is a legacy wallet-owned ERC-721 model, not the canonical vNext identity. Smart-contract migration, production deployment and cross-component E2E acceptance remain pending. Payment enforcement must remain disabled by default until those gates pass (`AIFP3_ENFORCE_PAYMENTS=false`).
 
