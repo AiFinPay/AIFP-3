@@ -24,13 +24,25 @@ No repository named `AiFinPay/agent-passport` or `AiFinPay/passport` exists in t
 | Surface | Repository / source | Current role | Status boundary |
 |---|---|---|---|
 | Public protocol | [`AiFinPay/AIFP-3`](https://github.com/AiFinPay/AIFP-3) | Normative Global Agent Passport contract, schemas and security rules | Draft 0.1 |
+| Earlier combined backend RC | [`AiFinPay/aifinpay-web` PR #22](https://github.com/AiFinPay/aifinpay-web/pull/22) | Global identity v2 plus 13-network settlement control plane | Open stacked RC, depends on PR #17 and currently not mergeable; identity portion must be reconciled with newer PR #33 |
 | Backend vNext | [`AiFinPay/aifinpay-web` PR #33](https://github.com/AiFinPay/aifinpay-web/pull/33) | Global identity, permanent number, issuer/holder signatures, integrity enforcement, 13-network wallet registry and lifecycle API | **Open draft**, not merged; CI passed at `48286248e6bbdcff91644065c9ed970844b09cea` |
+| Merged SDK settlement/identity RC | [`AiFinPay/sdk` PR #26](https://github.com/AiFinPay/sdk/pull/26) | Global passport resolver, exact-network wallet selection and settlement client | Merged to `main`; source RC only, package/app rollout and paid E2E pending |
 | SDK vNext | [`AiFinPay/sdk` PR #27](https://github.com/AiFinPay/sdk/pull/27) | Holder-key generation, issuance/binding helpers and issuer/integrity verification | **Open draft**, not merged; CI passed at `e00063c47555ad6b961d66480c55eab381852711` |
+| Dashboard | [`AiFinPay/paywall-dashboard` PR #9](https://github.com/AiFinPay/paywall-dashboard/pull/9) | Passport create/resolve/bind/revoke UI | Open source RC; depends on the older backend PR #22 and must be reconciled with PR #33 before deployment |
 | Legacy EVM passport | [`AgentPassport.sol`](https://github.com/AiFinPay/evm-contract/blob/main/contracts/AgentPassport.sol) | Soulbound ERC-721, wallet-owned chain passport | Existing legacy model; **not canonical vNext identity** |
 | Stellar passport contract | `AiFinPay/stellar-contract` (private) | Soroban passport-related implementation | Chain-specific surface; must migrate to the global identity contract |
 | Smart-contract migration | Active contract repositories | Digest/status/wallet-binding anchors where needed | **Pending and intentionally excluded from PRs #33/#27** |
 
-The words “Agent Passport repository” should therefore refer to `AiFinPay/AIFP-3` for the public protocol. Implementation claims must name the exact backend, SDK or contract source.
+The words “Agent Passport repository” should therefore refer to `AiFinPay/AIFP-3` for the public protocol. Implementation claims must name the exact backend, SDK, dashboard or contract source.
+
+## Current branch conflict
+
+There are two implementation generations in flight:
+
+1. PR #22 + merged SDK PR #26 + dashboard PR #9 form the earlier combined identity/settlement production-RC stack;
+2. backend PR #33 + SDK PR #27 form the newer isolated dual-key, integrity-protected Global Agent Passport candidate.
+
+They share the global identity direction but are not one merged release. The dashboard and settlement control plane must be rebased/reconciled against the final PR #33 API and data model. Until that happens, documentation must not combine their capabilities into one “ready” system.
 
 ## Source precedence
 
@@ -83,7 +95,9 @@ The legacy on-chain passport and global vNext credential cannot both be describe
 |---|---|
 | Public Global Agent Passport specification | Draft |
 | Backend vNext implementation | Open draft PR; CI passed; not merged |
-| SDK vNext implementation | Open draft PR; CI passed; not merged |
+| Earlier SDK resolver/settlement RC | PR #26 merged; rollout and E2E pending |
+| SDK dual-key vNext implementation | Open draft PR #27; CI passed; not merged |
+| Dashboard Passport RC | Open PR #9; backend/API reconciliation and UI E2E pending |
 | Legacy EVM/Soroban passport code | Exists; not the canonical vNext identity |
 | Smart-contract migration | Pending |
 | Cross-component lifecycle and payment E2E | Pending |
