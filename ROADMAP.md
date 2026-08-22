@@ -2,12 +2,12 @@
 
 | Capability | Status | Release evidence required |
 |---|---|---|
-| Global `agent_id` and permanent AIFP number | **Implementation candidate** | Schema, migration and uniqueness tests |
-| Holder + issuer dual-key credential | **Implementation candidate** | Canonicalization and signature vectors |
-| Multiple wallet bindings | **Implementation candidate** | EVM/Solana ownership-proof tests |
-| Holder key rotation and recovery | **Implementation candidate** | Replay, race and compromised-key tests |
-| Suspend, restore and revoke lifecycle | **Implementation candidate** | Authorization and audit tests |
-| Protected-metadata enforcement | **Implementation candidate** | Tamper tests and fail-closed behavior |
+| Global `agent_id` and permanent AIFP number | **Draft PR candidate** | Merge backend PR #33 and SDK PR #27 after review |
+| Holder + issuer dual-key credential | **Draft PR candidate** | Canonicalization and signature vectors plus merge |
+| Multiple wallet bindings | **Draft PR candidate** | Ownership-proof conformance plus merge |
+| Holder key rotation and recovery | **Draft PR candidate** | Replay, race and compromised-key tests plus merge |
+| Suspend, restore and revoke lifecycle | **Draft PR candidate** | Authorization/audit acceptance plus merge |
+| Protected-metadata enforcement | **Draft PR candidate** | Tamper acceptance and fail-closed review plus merge |
 | EVM registry migration | **Pending** | Testnet deploy, state migration and runtime evidence |
 | Solana registry migration | **Pending** | Deployable artifact, migration and program evidence |
 | SDK/backend conformance | **Pending** | Clean install and cross-component E2E |
@@ -23,4 +23,3 @@
 4. Migrate EVM and Solana registries without replacing the global passport model.
 5. Run security, privacy, recovery and multi-wallet E2E.
 6. Enable payment enforcement gradually after rollback testing.
-
