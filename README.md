@@ -97,14 +97,17 @@ Passport verification should disclose only what a relying party needs. A verifie
 | Threats and required controls | [Security model](docs/security-model.md) |
 | Data minimization | [Privacy model](docs/privacy-model.md) |
 | SDK/API/payment integration | [Integration guide](docs/integration-guide.md) |
+| Real repositories, PRs and migration status | [Implementation map](docs/implementation-map.md) |
 | Machine-readable API | [OpenAPI 3.1](spec/openapi.yaml) |
 | JSON objects | [Schemas](schemas/) |
 
 ## Implementation status
 
-The vNext implementation contains the global identity, permanent number, issuer/holder key model, wallet ownership proof, rotation, revoke and administrative lifecycle surfaces. EVM/Solana migration, production deployment and cross-component E2E acceptance remain pending. Payment enforcement must remain disabled by default until those gates pass (`AIFP3_ENFORCE_PAYMENTS=false`).
+The Global Agent Passport vNext implementation is currently split between [backend PR #33](https://github.com/AiFinPay/aifinpay-web/pull/33) and [SDK PR #27](https://github.com/AiFinPay/sdk/pull/27). Both report passing CI, but both remain **open draft pull requests and are not merged**. They contain the global identity, permanent number, issuer/holder key model, wallet ownership proof, rotation, revoke and administrative lifecycle surfaces.
 
-The protocol repository defines the public contract. Current code must be verified in the implementation repositories before any production claim.
+The existing [`AgentPassport.sol`](https://github.com/AiFinPay/evm-contract/blob/main/contracts/AgentPassport.sol) is a legacy wallet-owned ERC-721 model, not the canonical vNext identity. Smart-contract migration, production deployment and cross-component E2E acceptance remain pending. Payment enforcement must remain disabled by default until those gates pass (`AIFP3_ENFORCE_PAYMENTS=false`).
+
+There is no separate canonical repository named `agent-passport`: this AIFP-3 repository is the public protocol, while backend, SDK and chain implementations live in their respective repositories. See the [implementation map](docs/implementation-map.md).
 
 ## One system, six protocols
 
@@ -125,8 +128,10 @@ flowchart TD
 | [AIFP-2](https://github.com/AiFinPay/AIFP-2) | Programmable x402-compatible agent payments |
 | **AIFP-3** | Portable agent identity, wallet bindings and status |
 | [AIFP-4](https://github.com/AiFinPay/AIFP-4) | Banking and SWIFT execution layer |
-| AIFP-5 | Classical, hybrid and post-quantum authorization |
-| AIFP-6 | Financial policy, delegation, approvals and audit |
+| [AIFP-5](https://github.com/AiFinPay/AIFP-5-Quantum-Safe-Financial-Protocol)¹ | Classical, hybrid and post-quantum authorization |
+| [AIFP-6](https://github.com/AiFinPay/AIFP-6-Agentic-Financial-Governance-Protocol)¹ | Financial policy, delegation, approvals and audit |
+
+¹ AIFP-5 and AIFP-6 are currently private repositories; the links resolve for authorized organization members.
 
 ## License
 
