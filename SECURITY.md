@@ -1,10 +1,12 @@
 # Security Policy
 
-AIFP-3 protects agent identity, issuer claims, holder control, wallet bindings, status, permissions and financial reputation.
+AIFP-3 protects agent identity, issuer claims, holder control, wallet bindings, status, permissions and issuer-attested claims.
 
 ## Reporting
 
 Do not open a public issue for vulnerabilities. Email `security@aifinpay.io` with the affected version/commit, reproduction, preconditions, impact and suggested remediation.
+
+Maintainers target an acknowledgement within five business days. This is not an SLA.
 
 ## In scope
 

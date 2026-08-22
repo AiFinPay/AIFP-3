@@ -107,7 +107,7 @@ The newest dual-key Global Agent Passport implementation is split between [backe
 
 An earlier combined production-RC stack also exists: backend [PR #22](https://github.com/AiFinPay/aifinpay-web/pull/22), merged SDK [PR #26](https://github.com/AiFinPay/sdk/pull/26) and dashboard [PR #9](https://github.com/AiFinPay/paywall-dashboard/pull/9). It shares the global-identity direction but is not the same final data/security model. PR #22 remains stacked on another backend branch and the dashboard still depends on it. These surfaces must be reconciled with PR #33/#27 before one release can be claimed.
 
-The existing [`AgentPassport.sol`](https://github.com/AiFinPay/evm-contract/blob/main/contracts/AgentPassport.sol) is a legacy wallet-owned ERC-721 model, not the canonical vNext identity. Smart-contract migration, production deployment and cross-component E2E acceptance remain pending. Payment enforcement must remain disabled by default until those gates pass (`AIFP3_ENFORCE_PAYMENTS=false`).
+The existing [`AgentPassport.sol`](https://github.com/AiFinPay/evm-contract/blob/main/contracts/AgentPassport.sol) is a legacy wallet-owned ERC-721 model, not the canonical vNext identity. Smart-contract migration, production deployment and cross-component E2E acceptance remain pending. The passport is not consulted during settlement: payment enforcement stays disabled until the acceptance gates in ROADMAP.md pass.
 
 There is no separate canonical repository named `agent-passport`: this AIFP-3 repository is the public protocol, while backend, SDK and chain implementations live in their respective repositories. See the [implementation map](docs/implementation-map.md).
 
@@ -121,7 +121,7 @@ flowchart TD
   P6 --> P5["AIFP-5 · is authorization valid?"]
   P5 --> P1["AIFP-1 · monetize access"]
   P5 --> P2["AIFP-2 · execute payment"]
-  P5 --> P4["AIFP-4 · execute banking instruction"]
+  P5 --> P4["AIFP-4 · banking via licensed partners"]
 ```
 
 | Protocol | Responsibility |
@@ -129,9 +129,9 @@ flowchart TD
 | [AIFP-1](https://github.com/AiFinPay/AIFP-1) | Merchant AI-traffic and digital-resource monetization |
 | [AIFP-2](https://github.com/AiFinPay/AIFP-2) | Programmable x402-compatible agent payments |
 | **AIFP-3** | Portable agent identity, wallet bindings and status |
-| [AIFP-4](https://github.com/AiFinPay/AIFP-4) | Banking and SWIFT execution layer |
-| [AIFP-5](https://github.com/AiFinPay/AIFP-5-Quantum-Safe-Financial-Protocol)¹ | Classical, hybrid and post-quantum authorization |
-| [AIFP-6](https://github.com/AiFinPay/AIFP-6-Agentic-Financial-Governance-Protocol)¹ | Financial policy, delegation, approvals and audit |
+| [AIFP-4](https://github.com/AiFinPay/AIFP-4) | Banking and SWIFT execution through licensed fintech and banking partners |
+| [AIFP-5](https://github.com/AiFinPay/AIFP-5-Quantum-Safe-Financial-Protocol)¹ | Post-quantum security layer: PQ signatures, quantum-resistant key exchange, crypto-agility |
+| [AIFP-6](https://github.com/AiFinPay/AIFP-6-Agentic-Financial-Governance-Protocol)¹ | Governance for institutional, banking and government agents: policy, limits, approvals, audit |
 
 ¹ AIFP-5 and AIFP-6 are currently private repositories; the links resolve for authorized organization members.
 

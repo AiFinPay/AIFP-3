@@ -6,7 +6,7 @@
 - issuer and holder signing authority;
 - wallet ownership bindings;
 - lifecycle and revocation state;
-- permissions and financial reputation;
+- permissions and issuer-attested claims;
 - private aliases and recovery evidence;
 - audit history used by financial protocols.
 
