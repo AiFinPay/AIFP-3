@@ -5,7 +5,7 @@
 <h1 align="center">AiFinPay AIFP-3 Agent Passport</h1>
 
 <p align="center">
-  <strong>Portable identity, permissions, wallet bindings and financial reputation for autonomous agents.</strong>
+  <strong>Portable identity, dual-key trust, lifecycle and verified wallet bindings for autonomous agents.</strong>
 </p>
 
 <p align="center">
@@ -35,7 +35,7 @@ flowchart TD
   P --> E["EVM wallets"]
   P --> S["Solana wallets"]
   P --> O["Other rails"]
-  P --> G["Permissions + reputation"]
+  P --> G["Lifecycle + integrity"]
 ```
 
 The passport is a portable credential and registry record. It is not an ERC-721 and it has no single owner wallet. Choosing one wallet as an NFT owner would recreate the incorrect `wallet = passport` model.
