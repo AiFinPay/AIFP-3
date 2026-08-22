@@ -2,6 +2,8 @@
 
 ## Start here
 
+- See how AIFP-3 fits into the [six-protocol AiFinPay architecture](protocol-family.md).
+
 1. [Protocol specification](protocol-specification.md)
 2. [Architecture](architecture.md)
 3. [Identity model](identity-model.md)
@@ -18,4 +20,3 @@
 - [Passport credential schema](../schemas/passport.schema.json)
 - [Wallet binding schema](../schemas/wallet-binding.schema.json)
 - [TypeScript verification example](../examples/typescript/verify-passport.ts)
-

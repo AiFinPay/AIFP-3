@@ -29,7 +29,7 @@ AIFP-3: resolve agent + status + wallet binding
 → AIFP-3/AIFP-6: append outcome/reputation evidence where permitted
 ```
 
-AIFP-3 payment enforcement remains opt-in until production migration and E2E acceptance. Baseline AIFP-2/x402 clients must remain interoperable without a passport.
+AIFP-3 payment enforcement remains opt-in until production migration and E2E acceptance. Baseline x402-compatible AIFP-2 clients must remain interoperable without a passport.
 
 ## API surfaces
 
@@ -42,4 +42,3 @@ AIFP-3 payment enforcement remains opt-in until production migration and E2E acc
 - `POST /v1/passports/{agent_id}/status`
 
 Production endpoints require authentication, authorization, idempotency, audit logging and abuse protection beyond the illustrative OpenAPI contract.
-

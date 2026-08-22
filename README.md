@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/brand/aifp-3-protocol.svg" alt="AIFP-3 Protocol" width="760" />
+  <img src="assets/brand/aifp-3-hero-light.jpg" alt="AiFinPay AIFP-3 Global Agent Passport" width="900" />
 </p>
 
 <h1 align="center">AiFinPay AIFP-3 Agent Passport</h1>
@@ -12,7 +12,14 @@
   <a href="docs/index.md"><img alt="Documentation" src="https://img.shields.io/badge/docs-passport%20portal-2F5FD6?style=for-the-badge"></a>
   <a href="docs/protocol-specification.md"><img alt="Specification" src="https://img.shields.io/badge/spec-AIFP--3%20Draft%200.1-14B8A6?style=for-the-badge"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache--2.0%20%2B%20CC--BY--4.0-0B1020?style=for-the-badge"></a>
-  <a href="ROADMAP.md"><img alt="Status" src="https://img.shields.io/badge/status-vNext%20candidate-F59E0B?style=for-the-badge"></a>
+  <a href="ROADMAP.md"><img alt="Status" src="https://img.shields.io/badge/status-draft%200.1-F59E0B?style=for-the-badge"></a>
+</p>
+
+<p align="center">
+  <a href="https://aifinpay.io">Website</a> ·
+  <a href="docs/index.md">Documentation</a> ·
+  <a href="https://github.com/AiFinPay/sdk">SDK &amp; MCP</a> ·
+  <a href="https://github.com/AiFinPay/AIFP-2">Agent payments</a>
 </p>
 
 ---
@@ -101,6 +108,8 @@ The protocol repository defines the public contract. Current code must be verifi
 
 ## One system, six protocols
 
+See the complete [AiFinPay protocol-family architecture](docs/protocol-family.md).
+
 ```mermaid
 flowchart TD
   P3["AIFP-3 · who is acting?"] --> P6["AIFP-6 · may it act?"]
@@ -122,4 +131,3 @@ flowchart TD
 ## License
 
 Code, examples, schemas and machine-readable artifacts are licensed under Apache License 2.0. Documentation and prose specifications are licensed under CC BY 4.0 unless a file states otherwise. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
-
