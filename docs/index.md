@@ -3,6 +3,7 @@
 ## Start here
 
 - See how AIFP-3 fits into the [six-protocol AiFinPay architecture](protocol-family.md).
+- Check the [implementation map](implementation-map.md) for the exact backend, SDK, legacy-contract and migration status.
 
 1. [Protocol specification](protocol-specification.md)
 2. [Architecture](architecture.md)
