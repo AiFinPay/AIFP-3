@@ -118,10 +118,10 @@ See the complete [AiFinPay protocol-family architecture](docs/protocol-family.md
 ```mermaid
 flowchart TD
   P3["AIFP-3 · who is acting?"] --> P6["AIFP-6 · may it act?"]
-  P6 --> P5["AIFP-5 · is authorization valid?"]
-  P5 --> P1["AIFP-1 · monetize access"]
-  P5 --> P2["AIFP-2 · execute payment"]
-  P5 --> P4["AIFP-4 · execute banking instruction"]
+  P6 --> Auth["Scoped financial authorization"]
+  Auth --> P1["AIFP-1 · monetize access"]
+  Auth --> P2["AIFP-2 · execute payment"]
+  Auth --> Bank["AIFP-6 · regulated financial provider"]
 ```
 
 | Protocol | Responsibility |
@@ -129,12 +129,14 @@ flowchart TD
 | [AIFP-1](https://github.com/AiFinPay/AIFP-1) | Merchant AI-traffic and digital-resource monetization |
 | [AIFP-2](https://github.com/AiFinPay/AIFP-2) | Programmable x402-compatible agent payments |
 | **AIFP-3** | Portable agent identity, wallet bindings and status |
-| [AIFP-4](https://github.com/AiFinPay/AIFP-4) | Banking and SWIFT execution layer |
-| [AIFP-5](https://github.com/AiFinPay/AIFP-5-Quantum-Safe-Financial-Protocol)¹ | Classical, hybrid and post-quantum authorization |
-| [AIFP-6](https://github.com/AiFinPay/AIFP-6-Agentic-Financial-Governance-Protocol)¹ | Financial policy, delegation, approvals and audit |
+| [AIFP-4](https://github.com/AiFinPay/AIFP-4) | Mesh payment-message transport: Wi-Fi, Bluetooth, NFC, radio and IoT |
+| [AIFP-5](https://github.com/AiFinPay/AIFP-5-Quantum-Safe-Financial-Protocol)¹ | Independent optional post-quantum security evolution |
+| [AIFP-6](https://github.com/AiFinPay/AIFP-6-Agentic-Financial-Governance-Protocol)¹ | Financial authority, banking/off-ramp provider orchestration, ledger and reconciliation |
 
 ¹ AIFP-5 and AIFP-6 are currently private repositories; the links resolve for authorized organization members.
 
 ## License
 
 Code, examples, schemas and machine-readable artifacts are licensed under Apache License 2.0. Documentation and prose specifications are licensed under CC BY 4.0 unless a file states otherwise. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
+
+The [financial ownership AIP](aips/aip-draft-financial-protocol-ownership.md) records this founder target. It changes no Passport schema, payment permission or existing x402 interface. Current SDK/backend incompatibility still blocks managed financial E2E.
